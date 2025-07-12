@@ -50,7 +50,10 @@ export const Login = () => {
                 localStorage.setItem("stackit-user", JSON.stringify(data.user));
 
                 alert("Login successful!");
+                window.location.reload();
+
                 navigate("/home");
+                window.location.reload();
             } else {
                 alert(data.message || "Login failed.");
             }
