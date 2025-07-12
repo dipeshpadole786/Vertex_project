@@ -14,3 +14,50 @@ StackIt is a minimal question-and-answer platform that supports collaborative le
 4. Samyak Mahatme samyakmahatme@gmail.com
 
 ---
+
+:
+
+📘 StackIt – A Minimal Q&A Forum Platform
+StackIt is a full-stack Question & Answer forum application built with the MERN stack (MongoDB, Express.js, React.js, Node.js). It allows users to post technical or general questions and answer others' questions. This project includes user authentication, voting, and a clean responsive UI built using Bootstrap.
+
+✨ Features
+🔐 User Authentication (Login, Signup, Logout)
+
+❓ Ask Questions
+
+💬 Answer Others’ Questions
+
+📊 Voting System (Agree/Disagree or Upvote/Downvote)
+
+🧑 User Profile View
+
+📋 Question Feed with Tags
+
+📝 Rich Text Editor for answers
+
+🌐 Responsive UI with Bootstrap
+
+🔔 Optional Notification System
+
+🛠️ Tech Stack
+Frontend:
+
+React.js
+
+Bootstrap 5
+
+React Router DOM
+
+Backend:
+
+Node.js
+
+Express.js
+
+MongoDB with Mongoose
+
+Passport.js (for user authentication)
+
+Express-session & cookie management
+
+
