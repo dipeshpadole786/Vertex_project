@@ -109,7 +109,7 @@ export const Home = () => {
                         All Questions
                     </h2>
                     <button
-                        onClick={() => navigate('/ask')}
+                        onClick={() => navigate('/add-question')}
                         style={{
                             padding: '10px 20px',
                             background: theme.accentColor,
