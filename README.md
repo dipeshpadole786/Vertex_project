@@ -9,7 +9,11 @@ Vedeo Link : https://drive.google.com/file/d/1752ac7ZQs_krSEYEV_HmhHxBibA1pwqO/v
 
 For Laptop :
 Clip 1 :https://drive.google.com/file/d/1PICOpJeNkFTDQ8cprULrk9_iHunANJqr/view?usp=drivesdk
-Clip 2 :https://drive.google.com/file/d/1PICOpJeNkFTDQ8cprULrk9_iHunANJqr/view?usp=drivesdk
+
+
+
+Clip 2 :
+https://drive.google.com/file/d/1TOUupeen0BI27SDXZqoFYoivE58wT8Q3/view?usp=drivesdk
 
 # 👥 Team Members
 
