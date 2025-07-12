@@ -1,9 +1,37 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-export const Header = ({ isAuthenticated = false, unreadCount = 3, username = "JohnDoe" }) => {
+export const Header = () => {
+    const navigate = useNavigate();
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [username, setUsername] = useState("");
+    const [unreadCount, setUnreadCount] = useState(3); // 🔔 Placeholder
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("stackit-user"));
+        if (user?.username) {
+            setIsAuthenticated(true);
+            setUsername(user.username);
+        }
+    }, []);
+
+    const handleLogout = () => {
+        // Clear session
+        fetch("http://localhost:3000/logout", {
+            method: "POST",
+            credentials: "include",
+        });
+
+        // Clear local storage and redirect
+        localStorage.removeItem("stackit-user");
+        setIsAuthenticated(false);
+        setUsername("");
+        navigate("/login");
+    };
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
             <div className="container-fluid px-4">
@@ -27,7 +55,7 @@ export const Header = ({ isAuthenticated = false, unreadCount = 3, username = "J
                     {/* Left Side Nav */}
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link text-light" to="/ask">
+                            <Link className="nav-link text-light" to="/add-quetion">
                                 <i className="bi bi-question-circle me-1"></i> Ask
                             </Link>
                         </li>
@@ -41,30 +69,40 @@ export const Header = ({ isAuthenticated = false, unreadCount = 3, username = "J
                     {/* Right Side: Notifications & Auth */}
                     <ul className="navbar-nav mb-2 mb-lg-0">
                         {/* Notification Icon */}
-                        <li className="nav-item me-3 position-relative">
-                            <Link className="nav-link p-0 d-flex align-items-center" to="/notifications">
-                                <i className="bi bi-bell" style={{ fontSize: "1.2rem", color: "#fff" }}></i>
-                                {unreadCount > 0 && (
-                                    <span
-                                        className="position-absolute top-0 start-100 translate-middle badge bg-danger"
-                                        style={{
-                                            fontSize: "0.6rem",
-                                            padding: "3px 5px",
-                                            borderRadius: "10px",
-                                            transform: "translate(-50%, -50%)"
-                                        }}
-                                    >
-                                        {unreadCount}
-                                    </span>
-                                )}
-                            </Link>
-                        </li>
+                        {isAuthenticated && (
+                            <li className="nav-item me-3 position-relative">
+                                <Link
+                                    className="nav-link p-0 d-flex align-items-center"
+                                    to="/notifications"
+                                >
+                                    <i
+                                        className="bi bi-bell"
+                                        style={{ fontSize: "1.2rem", color: "#fff" }}
+                                    ></i>
+                                    {unreadCount > 0 && (
+                                        <span
+                                            className="position-absolute top-0 start-100 translate-middle badge bg-danger"
+                                            style={{
+                                                fontSize: "0.6rem",
+                                                padding: "3px 5px",
+                                                borderRadius: "10px",
+                                                transform: "translate(-50%, -50%)",
+                                            }}
+                                        >
+                                            {unreadCount}
+                                        </span>
+                                    )}
+                                </Link>
+                            </li>
+                        )}
 
                         {/* Auth Links */}
                         {!isAuthenticated ? (
                             <>
                                 <li className="nav-item">
-                                    <Link className="nav-link text-light" to="/login">Login</Link>
+                                    <Link className="nav-link text-light" to="/login">
+                                        Login
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="btn btn-warning btn-sm ms-2" to="/register">
@@ -82,10 +120,14 @@ export const Header = ({ isAuthenticated = false, unreadCount = 3, username = "J
                                 </button>
                                 <ul className="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <Link className="dropdown-item" to={`/user/${username}`}>Profile</Link>
+                                        <Link className="dropdown-item" to={`/user/${username}`}>
+                                            Profile
+                                        </Link>
                                     </li>
                                     <li>
-                                        <Link className="dropdown-item" to="/logout">Logout</Link>
+                                        <button className="dropdown-item" onClick={handleLogout}>
+                                            Logout
+                                        </button>
                                     </li>
                                 </ul>
                             </li>
@@ -96,5 +138,3 @@ export const Header = ({ isAuthenticated = false, unreadCount = 3, username = "J
         </nav>
     );
 };
-
-

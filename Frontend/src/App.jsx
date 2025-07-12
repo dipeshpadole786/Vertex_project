@@ -1,6 +1,5 @@
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { Askquetion } from './Pages/Askquetion'
 import { Home } from './Pages/Home'
 import { Login } from './Pages/Login'
 import { Notification } from './Pages/Notification'
@@ -9,6 +8,8 @@ import { Question } from './Pages/Question'
 import { Signup } from './Pages/Signup'
 import { Footer } from './Components/Footer'
 import { Header } from './Components/Header'
+import { AskQuestion } from './Pages/Askquetion'
+import { AnswerPage } from './Pages/AnswerPage'
 
 
 const router = createBrowserRouter([
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
     element: (
       <div>
         <Header />
-        <Home />
+        <AskQuestion />
         <Footer />
       </div>
     )
@@ -37,17 +38,37 @@ const router = createBrowserRouter([
     element: (
       <div>
         <Header />
-        <Home />
+        <Login />
         <Footer />
       </div>
     )
   },
   {
-    path: "/signup",
+    path: "/register",
     element: (
       <div>
         <Header />
-        <Home />
+        <Signup />
+        <Footer />
+      </div>
+    )
+  },
+  {
+    path: "/user/:username",
+    element: (
+      <div>
+        <Header />
+        <Profile />
+        <Footer />
+      </div>
+    )
+  },
+  {
+    path: "/question/:id",
+    element: (
+      <div>
+        <Header />
+        <AnswerPage />
         <Footer />
       </div>
     )
