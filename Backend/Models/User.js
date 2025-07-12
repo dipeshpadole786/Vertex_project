@@ -1,19 +1,27 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/stackit', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
-console.log('✅ MongoDB connected');
-
-
 
 const userSchema = new mongoose.Schema({
-    username: { type: String, required: true, unique: true },
+    username: { type: String, unique: true },
     email: String,
-    password: { type: String, required: true },
-    questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }],
+    password: String,
+    questions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Question' }],
+    answers: [
+        {
+            questionId: { type: mongoose.Schema.Types.ObjectId, ref: 'Question' },
+            text: String,
+            createdAt: { type: Date, default: Date.now }
+        }
+    ],
+    votes: [
+        {
+            questionId: { type: mongoose.Schema.Types.ObjectId, ref: 'Question' },
+            answerIndex: Number, // index in the answers array of the question
+            voteType: String, // "up" or "down"
+        }
+    ],
+    role: { type: String, enum: ['user', 'admin'], default: 'user' },
+
+
 }, { timestamps: true });
 
-module.exports = mongoose.model("User", userSchema);
-
-
+module.exports = mongoose.model('User', userSchema);

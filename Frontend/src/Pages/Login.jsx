@@ -28,11 +28,11 @@ export const Login = () => {
             const data = await res.json();
 
             if (res.ok) {
-                // ✅ Save user info to localStorage
-                localStorage.setItem("stackit-user", JSON.stringify({ username: data.user }));
+                // ✅ Save full user object (username + role)
+                localStorage.setItem("stackit-user", JSON.stringify(data.user));
 
                 alert("Login successful!");
-                navigate("/");
+                navigate("/home");
             } else {
                 alert(data.message || "Login failed.");
             }
@@ -40,6 +40,7 @@ export const Login = () => {
             alert("Server error. Try again later.");
         }
     };
+
 
     return (
         <div className="container mt-5" style={{ maxWidth: "400px" }}>

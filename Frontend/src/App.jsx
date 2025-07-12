@@ -4,7 +4,6 @@ import { Home } from './Pages/Home'
 import { Login } from './Pages/Login'
 import { Notification } from './Pages/Notification'
 import { Profile } from './Pages/Profile'
-import { Question } from './Pages/Question'
 import { Signup } from './Pages/Signup'
 import { Footer } from './Components/Footer'
 import { Header } from './Components/Header'
@@ -23,16 +22,7 @@ const router = createBrowserRouter([
       </div>
     )
   },
-  {
-    path: "/add-quetion",
-    element: (
-      <div>
-        <Header />
-        <AskQuestion />
-        <Footer />
-      </div>
-    )
-  },
+
   {
     path: "/login",
     element: (
@@ -69,6 +59,16 @@ const router = createBrowserRouter([
       <div>
         <Header />
         <AnswerPage />
+        <Footer />
+      </div>
+    )
+  },
+  {
+    path: "/add-question",
+    element: (
+      <div>
+        <Header />
+        <AskQuestion />
         <Footer />
       </div>
     )
